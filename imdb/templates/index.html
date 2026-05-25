@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMDb Top 250 Scraper</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="background-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1><i class="fa-solid fa-film"></i> IMDb Scraper Pro</h1>
+            <p>Dynamically extract the Top 250 movies</p>
+        </header>
+
+        <main>
+            <div class="controls">
+                <button id="scrapeBtn" class="btn primary-btn">
+                    <i class="fa-solid fa-spider"></i> Scrape Fresh Data
+                </button>
+                <a href="/download" id="downloadBtn" class="btn secondary-btn hidden">
+                    <i class="fa-solid fa-download"></i> Download CSV
+                </a>
+            </div>
+
+            <div id="loader" class="loader-container hidden">
+                <div class="spinner"></div>
+                <p>Scraping data in the background... This may take a minute.</p>
+            </div>
+
+            <div id="resultMessage" class="message hidden"></div>
+
+            <div id="dataDashboard" class="hidden">
+                <div class="dashboard-controls">
+                    <div class="filter-group">
+                        <label for="ratingFilter"><i class="fa-solid fa-filter"></i> Min Rating:</label>
+                        <select id="ratingFilter">
+                            <option value="0">All Ratings</option>
+                            <option value="9.0">9.0 & Above</option>
+                            <option value="8.5">8.5 & Above</option>
+                            <option value="8.0">8.0 & Above</option>
+                            <option value="7.5">7.5 & Above</option>
+                        </select>
+                    </div>
+                    <div class="stats">
+                        <div class="stat-box">
+                            <span class="stat-label">Total Movies</span>
+                            <span id="totalMovies" class="stat-value">0</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-label">Avg Rating</span>
+                            <span id="avgRating" class="stat-value">0.0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-container" id="tableContainer">
+                    <table id="dataTable">
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Title</th>
+                                <th>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                            <!-- Data will be inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
